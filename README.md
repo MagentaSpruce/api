@@ -233,3 +233,74 @@ app.listen(port, () => {
 });
 ```
 
+***Optional: Install morgan using npm i morgan, then require it, then use it.
+```JavaScript
+const morgan = require('morgan');
+app.use(morgan('dev'));
+```
+
+Implement routes for the users resource(for creating user accounts, assigning user roles, ect).
+```JavaScript
+app.route('/api').get(getAllUsers).post(createUser);
+app.route('/api/v1/user/:id').get(getUser).patch(updateUser).delete(deleteUser);
+```
+
+Create the five corresponding functions.
+```JavaScript
+const getAllUsers = (req, res) => {
+res.status(500).json({
+status: 'error',
+message: 'This route is not yet defined'
+})
+}
+
+const getUser = (req, res) => {
+res.status(500).json({
+status: 'error',
+message: 'This route is not yet defined'
+})
+}
+
+const createUser = (req, res) => {
+res.status(500).json({
+status: 'error',
+message: 'This route is not yet defined'
+})
+}
+
+const updateUser = (req, res) => {
+res.status(500).json({
+status: 'error',
+message: 'This route is not yet defined'
+})
+}
+
+const deleteUser = (req, res) => {
+res.status(500).json({
+status: 'error',
+message: 'This route is not yet defined'
+})
+}
+```
+
+Construct a router for each resource and mount them.
+```JavaScript
+const tourRouter = express.Router();
+const userRouter = express.Router();
+
+tourRouter.route('/api/v1/tours').get(getAllTours).post(createTour);
+tourRouter.route('/api/v1/tours/:id').get(getTour).patch(updateTour).delete(deleteTour);
+userRouter.route('/').get(getAllUsers).post(createUser);
+userRouter.route('/:id').get(getUser).patch(createUser).delete(deleteUser);
+
+app.use('/api/v1/tours', tourRouter);
+app.use('/api/v1/tours', userRouter);
+```
+
+Refactored the application into multiple files, app.js, tourRoutes.js, & userRoutes.js. app.js is the global app file and both imports and mounts the other two routers.
+```JavaScript
+```
+
+
+
+sss
