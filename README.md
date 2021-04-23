@@ -297,7 +297,9 @@ app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/tours', userRouter);
 ```
 
-Refactored the application into multiple files, app.js, tourRoutes.js, & userRoutes.js. app.js is the global app file and both imports and mounts the other two routers.
+Refactored the application into multiple files, app.js, tourRoutes.js, & userRoutes.js. app.js is the global app file and both imports and mounts the other two routers. server.js contains the server and is started using an npm start script command in package.json.
+
+Created param middleware.
 ```JavaScript
 ```
 
