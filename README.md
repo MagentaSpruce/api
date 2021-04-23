@@ -299,10 +299,30 @@ app.use('/api/v1/tours', userRouter);
 
 Refactored the application into multiple files, app.js, tourRoutes.js, & userRoutes.js. app.js is the global app file and both imports and mounts the other two routers. server.js contains the server and is started using an npm start script command in package.json.
 
-Created param middleware.
+Created param middleware to check for tour ID validation to finish streamlining singular purpose functions.
 ```JavaScript
+router.param('id', tourController.checkID);
+
+exports.getAllTours = (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    requestedAt: req.requestTime,
+    results: tours.length,
+    data: {
+      tours: tours,
+    },
+  });
+};
 ```
 
+Added static middleware for serving static files.
+```JavaScript
+app.use(express.static(`${__dirname}/public`));
+```
 
-
-sss
+Set up config.env for dealing with enviornmental variables.
+```JavaScript
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+```
